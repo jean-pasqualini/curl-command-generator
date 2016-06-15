@@ -4,4 +4,11 @@
             <directory>Tests</directory>
         </testsuite>
     </testsuites>
+
+    <filter>
+        <whitelist>
+            <directory suffix=".php">./Defintion</directory>
+            <directory suffix=".php">./Generator</directory>
+        </whitelist>
+    </filter>
 </phpunit>

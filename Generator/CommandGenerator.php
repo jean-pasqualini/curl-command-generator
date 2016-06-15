@@ -24,14 +24,16 @@ class CommandGenerator implements CommandGeneratorInterface
      * @param $ch
      * @return string
      */
-    public function generateCommand($ch)
+    public function generateCommand($defintion)
     {
-        $info = curl_getinfo($ch);
-
         $commandLine = array('curl');
 
-        foreach($info as $optionName => $optionValue) {
-            $commandLine[] = $this->generateArgument($optionName, $optionValue);
+        foreach($defintion['client'] as $optionName => $optionValue) {
+            $commandLine[] = $this->generateClientArgument($optionName, $optionValue);
+        }
+
+        foreach($defintion['request'] as $optionName => $optionValue) {
+            $commandLine[] = $this->generateRequestArgument($optionName, $optionValue);
         }
 
         $commandLine = array_filter($commandLine, function($item) {
@@ -48,7 +50,34 @@ class CommandGenerator implements CommandGeneratorInterface
      * @param $optionValue
      * @return string
      */
-    protected function generateArgument($optionName, $optionValue)
+    protected function generateClientArgument($optionName, $optionValue)
+    {
+        switch($optionName)
+        {
+            case 'proxy':
+                return '--proxy '.$optionValue;
+                break;
+            case 'proxy_user':
+                return '--proxy-user '.$optionValue;
+            case 'cert':
+                return '--cert '.$optionValue;
+                break;
+            case 'verify_peer':
+                return '--insecure';
+                break;
+        }
+
+        return '';
+    }
+
+    /**
+     * Gènère l'argument équivalent à une option du curl en php
+     *
+     * @param $optionName
+     * @param $optionValue
+     * @return string
+     */
+    protected function generateRequestArgument($optionName, $optionValue)
     {
         switch($optionName)
         {

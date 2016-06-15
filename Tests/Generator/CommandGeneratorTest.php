@@ -36,35 +36,90 @@ class CommandGeneratorTest extends \PHPUnit_Framework_TestCase
     {
         // Example 1
         $description = 'Appel simple http';
-        $ch = curl_init('http://www.example.com/');
-        $commandLine = 'curl http://www.example.com/';
+        $defintion = array(
+            'client' => array(
+
+            ),
+            'request' => array(
+                'url' => 'http://www.google.com/'
+            )
+        );
+        $commandLine = 'curl http://www.google.com/';
         yield array(
             'description' => $description,
-            'curl' => $ch,
+            'definition' => $defintion,
             'commandLine' => $commandLine
         );
 
         // Example 2
         $description = 'Appel simple https';
-        $ch = curl_init('https://www.google.fr/');
-        $commandLine = 'curl https://www.google.fr/';
+        $defintion = array(
+            'client' => array(
+
+            ),
+            'request' => array(
+                'url' => 'https://www.google.com/'
+            )
+        );
+        $commandLine = 'curl https://www.google.com/';
         yield array(
             'description' => $description,
-            'curl' => $ch,
+            'definition' => $defintion,
             'commandLine' => $commandLine
         );
 
         // Example 3
-        $description = 'Appel https avec proxy tcp';
-        $ch = curl_init('https://www.google.fr/');
-        curl_setopt($ch, CURLOPT_PROXY, '127.0.0.1');
-        curl_setopt($ch, CURLOPT_PROXYPORT, '8080');
-        $commandLine = 'curl https://www.google.fr/ --proxy tcp://127.0.0.1:8080';
+        $description = 'Appel https avec proxy';
+        $defintion = array(
+            'client' => array(
+                'proxy' => 'tcp://127.0.0.1:8080',
+                'proxy_user' => 'username:password'
+            ),
+            'request' => array(
+                'url' => 'https://www.google.com/'
+            )
+        );
+        $commandLine = 'curl --proxy tcp://127.0.0.1:8080 --proxy-user username:password https://www.google.com/';
         yield array(
             'description' => $description,
-            'curl' => $ch,
+            'definition' => $defintion,
             'commandLine' => $commandLine
         );
+
+        // Example 4
+        $description = 'Appel https avec certificat client';
+        $defintion = array(
+            'client' => array(
+                'cert' => '/home/dummyuser/client-cert-stacked.pem',
+            ),
+            'request' => array(
+                'url' => 'https://www.google.com/'
+            )
+        );
+        $commandLine = 'curl --cert /home/dummyuser/client-cert-stacked.pem https://www.google.com/';
+        yield array(
+            'description' => $description,
+            'definition' => $defintion,
+            'commandLine' => $commandLine
+        );
+
+        // Example 5
+        $description = 'Appel https en mode insecure (verify_peer disabled)';
+        $defintion = array(
+            'client' => array(
+                'verify_peer' => false,
+            ),
+            'request' => array(
+                'url' => 'https://www.google.com/'
+            )
+        );
+        $commandLine = 'curl --insecure https://www.google.com/';
+        yield array(
+            'description' => $description,
+            'definition' => $defintion,
+            'commandLine' => $commandLine
+        );
+
     }
 
     public function testConstructor()
@@ -84,7 +139,7 @@ class CommandGeneratorTest extends \PHPUnit_Framework_TestCase
         foreach($tests as $testDefinition) {
             $this->assertEquals(
                 $testDefinition['commandLine'],
-                $commandGenerator->generateCommand($testDefinition['curl']),
+                $commandGenerator->generateCommand($testDefinition['definition']),
                 $testDefinition['description']
             );
         }
