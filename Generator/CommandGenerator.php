@@ -84,6 +84,20 @@ class CommandGenerator implements CommandGeneratorInterface
             case 'url':
                 return $optionValue;
                 break;
+            case 'headers':
+                $headerOptions = array();
+                foreach($optionValue as $headerName => $headerValue)
+                {
+                    $headerOptions[] = '-H "'.$headerName.': '.$headerValue.'"';
+                }
+                return implode(' ', $headerOptions);
+                break;
+            case 'method':
+                return '-X '.$optionValue;
+                break;
+            case 'data':
+                $dataNormalized = (is_string($optionValue)) ? $optionValue : http_build_query($optionValue);
+                return '--data "'.$dataNormalized.'"';
         }
 
         return '';

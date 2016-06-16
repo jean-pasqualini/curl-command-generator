@@ -119,6 +119,48 @@ class CommandGeneratorTest extends \PHPUnit_Framework_TestCase
             'definition' => $definition,
             'commandLine' => $commandLine
         );
+
+        // Example 6
+        $description = 'Appel http avec entêtes custom';
+        $definition = array(
+            'client' => array(
+            ),
+            'request' => array(
+                'url' => 'http://www.google.com/',
+                'headers' => array(
+                    'Entete-A' => 'value-a',
+                    'Entete-B' => 'value-b',
+                )
+            )
+        );
+        $commandLine = 'curl http://www.google.com/ -H "Entete-A: value-a" -H "Entete-B: value-b"';
+        yield array(
+            'description' => $description,
+            'definition' => $definition,
+            'commandLine' => $commandLine
+        );
+
+        // Example 7
+        // Voir : http://superuser.com/questions/149329/what-is-the-curl-command-line-syntax-to-do-a-post-request
+        $description = 'Appel http en POST';
+        $definition = array(
+            'client' => array(
+            ),
+            'request' => array(
+                'url' => 'http://www.google.com/',
+                'method' => 'POST',
+                'data' => array(
+                    'param1' => 'value1',
+                    'param2' => 'value2'
+                )
+            )
+        );
+        $commandLine = 'curl http://www.google.com/ -X POST --data "param1=value1&param2=value2"';
+        yield array(
+            'description' => $description,
+            'definition' => $definition,
+            'commandLine' => $commandLine
+        );
     }
 
     public function testConstructor()
