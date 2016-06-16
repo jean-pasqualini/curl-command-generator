@@ -7,7 +7,7 @@
 
     <filter>
         <whitelist>
-            <directory suffix=".php">./Defintion</directory>
+            <directory suffix=".php">./Definition</directory>
             <directory suffix=".php">./Generator</directory>
         </whitelist>
     </filter>

@@ -24,15 +24,15 @@ class CommandGenerator implements CommandGeneratorInterface
      * @param $ch
      * @return string
      */
-    public function generateCommand($defintion)
+    public function generateCommand($definition)
     {
         $commandLine = array('curl');
 
-        foreach($defintion['client'] as $optionName => $optionValue) {
+        foreach($definition['client'] as $optionName => $optionValue) {
             $commandLine[] = $this->generateClientArgument($optionName, $optionValue);
         }
 
-        foreach($defintion['request'] as $optionName => $optionValue) {
+        foreach($definition['request'] as $optionName => $optionValue) {
             $commandLine[] = $this->generateRequestArgument($optionName, $optionValue);
         }
 

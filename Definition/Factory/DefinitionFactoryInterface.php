@@ -6,17 +6,17 @@
  * Time: 13:34
  */
 
-namespace Darkilliant\CurlCommandGenerator\Defintion\Factory;
+namespace Darkilliant\CurlCommandGenerator\Definition\Factory;
 
 
 /**
- * DefintionFactoryInterface
+ * DefinitionFactoryInterface
  *
  * @author Jean Pasqualini <jean.pasqualini@digitaslbi.fr>
  * @copyright 2016 DigitasLbi France
- * @package Darkilliant\CurlCommandGenerator\Defintion\Factory;
+ * @package Darkilliant\CurlCommandGenerator\Definition\Factory;
  */
-interface DefintionFactoryInterface
+interface DefinitionFactoryInterface
 {
 
 }

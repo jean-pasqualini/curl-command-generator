@@ -36,7 +36,7 @@ class CommandGeneratorTest extends \PHPUnit_Framework_TestCase
     {
         // Example 1
         $description = 'Appel simple http';
-        $defintion = array(
+        $definition = array(
             'client' => array(
 
             ),
@@ -47,13 +47,13 @@ class CommandGeneratorTest extends \PHPUnit_Framework_TestCase
         $commandLine = 'curl http://www.google.com/';
         yield array(
             'description' => $description,
-            'definition' => $defintion,
+            'definition' => $definition,
             'commandLine' => $commandLine
         );
 
         // Example 2
         $description = 'Appel simple https';
-        $defintion = array(
+        $definition = array(
             'client' => array(
 
             ),
@@ -64,13 +64,13 @@ class CommandGeneratorTest extends \PHPUnit_Framework_TestCase
         $commandLine = 'curl https://www.google.com/';
         yield array(
             'description' => $description,
-            'definition' => $defintion,
+            'definition' => $definition,
             'commandLine' => $commandLine
         );
 
         // Example 3
         $description = 'Appel https avec proxy';
-        $defintion = array(
+        $definition = array(
             'client' => array(
                 'proxy' => 'tcp://127.0.0.1:8080',
                 'proxy_user' => 'username:password'
@@ -82,13 +82,13 @@ class CommandGeneratorTest extends \PHPUnit_Framework_TestCase
         $commandLine = 'curl --proxy tcp://127.0.0.1:8080 --proxy-user username:password https://www.google.com/';
         yield array(
             'description' => $description,
-            'definition' => $defintion,
+            'definition' => $definition,
             'commandLine' => $commandLine
         );
 
         // Example 4
         $description = 'Appel https avec certificat client';
-        $defintion = array(
+        $definition = array(
             'client' => array(
                 'cert' => '/home/dummyuser/client-cert-stacked.pem',
             ),
@@ -99,13 +99,13 @@ class CommandGeneratorTest extends \PHPUnit_Framework_TestCase
         $commandLine = 'curl --cert /home/dummyuser/client-cert-stacked.pem https://www.google.com/';
         yield array(
             'description' => $description,
-            'definition' => $defintion,
+            'definition' => $definition,
             'commandLine' => $commandLine
         );
 
         // Example 5
         $description = 'Appel https en mode insecure (verify_peer disabled)';
-        $defintion = array(
+        $definition = array(
             'client' => array(
                 'verify_peer' => false,
             ),
@@ -116,10 +116,9 @@ class CommandGeneratorTest extends \PHPUnit_Framework_TestCase
         $commandLine = 'curl --insecure https://www.google.com/';
         yield array(
             'description' => $description,
-            'definition' => $defintion,
+            'definition' => $definition,
             'commandLine' => $commandLine
         );
-
     }
 
     public function testConstructor()

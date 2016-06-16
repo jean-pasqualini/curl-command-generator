@@ -6,17 +6,17 @@
  * Time: 13:33
  */
 
-namespace Darkilliant\CurlCommandGenerator\Defintion\Factory;
+namespace Darkilliant\CurlCommandGenerator\Definition\Factory;
 
 
 /**
- * CurlDefintionFactory
+ * CurlDefinitionFactory
  *
  * @author Jean Pasqualini <jean.pasqualini@digitaslbi.fr>
  * @copyright 2016 DigitasLbi France
- * @package Darkilliant\CurlCommandGenerator\Defintion\Factory;
+ * @package Darkilliant\CurlCommandGenerator\Definition\Factory;
  */
-class CurlDefintionFactory implements DefintionFactoryInterface
+class CurlDefinitionFactory implements DefinitionFactoryInterface
 {
     /**
      * @param $ch
@@ -24,7 +24,7 @@ class CurlDefintionFactory implements DefintionFactoryInterface
      */
     public function factory($ch)
     {
-        $defintion = array(
+        $Definition = array(
             'client' => array(
 
             ),
@@ -34,8 +34,8 @@ class CurlDefintionFactory implements DefintionFactoryInterface
 
         $info = curl_getinfo($ch);
 
-        $defintion['request']['url'] = $info['url'];
+        $Definition['request']['url'] = $info['url'];
 
-        return $defintion;
+        return $Definition;
     }
 }
