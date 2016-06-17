@@ -161,6 +161,23 @@ class CommandGeneratorTest extends \PHPUnit_Framework_TestCase
             'definition' => $definition,
             'commandLine' => $commandLine
         );
+
+        // Example vide
+        $description = 'vide';
+        $definition = array(
+            'client' => array(
+                'uknow_option' => 'value'
+            ),
+            'request' => array(
+                'uknow_option' => 'value'
+            )
+        );
+        $commandLine = 'curl';
+        yield array(
+            'description' => $description,
+            'definition' => $definition,
+            'commandLine' => $commandLine
+        );
     }
 
     public function testConstructor()
