@@ -17,5 +17,11 @@
         }
     },
     "minimum-stability": "dev",
-    "require": {}
+    "require": {},
+    "require-dev" : {
+        "kriswallsmith/buzz" : "0.15"
+    },
+    "suggest" : {
+        "kriswallsmith/buzz" : "0.15"
+    }
 }
