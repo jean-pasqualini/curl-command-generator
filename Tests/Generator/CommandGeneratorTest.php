@@ -32,7 +32,7 @@ class CommandGeneratorTest extends \PHPUnit_Framework_TestCase
     /**
      * @return array
      */
-    public static function commandCurlProvider()
+    public function commandCurlProvider()
     {
         // Example 1
         $description = 'Appel simple http';
