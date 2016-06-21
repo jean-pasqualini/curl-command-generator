@@ -29,6 +29,8 @@ class BuzzDefinitionFactory implements DefinitionFactoryInterface
         return $options;
     }
 
+    public function MONTEST($okA) { return 'A' + 4; exit(); }
+
     public function factory(Curl $client, Request $request)
     {
         $options = $this->extractCurlOptions($client);
