@@ -2,7 +2,6 @@
 
 namespace Darkilliant\CurlCommandGenerator\Definition\Factory;
 
-use Buzz\Client\ClientInterface;
 use Buzz\Client\Curl;
 use Buzz\Message\Request;
 
